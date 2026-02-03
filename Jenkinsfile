@@ -8,10 +8,11 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                echo 'Testing application'
-            }
-        }
+    steps {
+        echo 'Running updated tests'
+    }
+}
+
 
         stage('Deploy') {
             steps {

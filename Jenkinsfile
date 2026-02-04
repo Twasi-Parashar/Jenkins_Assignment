@@ -1,30 +1,34 @@
 pipeline {
     agent any
+
+    environment {
+        APP_NAME = "StudentApp"
+        ENV = "DEV"
+    }
+
     stages {
         stage('Build') {
             steps {
-                echo 'Building application'
+                echo "Building ${APP_NAME}"
             }
         }
 
         stage('Test') {
-    steps {
-        sh 'mvn test'
-    }
-}
-
-
-        stage('Deploy') {
             steps {
-                echo 'Deploying application'
+                sh 'mvn test'
             }
         }
 
         stage('Code Quality') {
-    steps {
-        echo 'Analyzing code quality using SonarQube'
-    }
-}
+            steps {
+                echo "Analyzing code quality in ${ENV} environment"
+            }
+        }
 
+        stage('Deploy') {
+            steps {
+                echo "Deploying ${APP_NAME}"
+            }
+        }
     }
 }

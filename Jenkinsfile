@@ -25,6 +25,19 @@ pipeline {
             }
         }
 
+        stage('Credentials Demo') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'demo-creds',
+            usernameVariable: 'USER',
+            passwordVariable: 'PASS'
+        )]) {
+            echo 'Credentials accessed securely'
+        }
+    }
+}
+
+
         stage('Deploy') {
             steps {
                 echo "Deploying ${APP_NAME}"

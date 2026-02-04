@@ -9,7 +9,7 @@ pipeline {
 
         stage('Test') {
     steps {
-        echo 'Running updated tests'
+        sh 'mvn test'
     }
 }
 
@@ -19,5 +19,12 @@ pipeline {
                 echo 'Deploying application'
             }
         }
+
+        stage('Code Quality') {
+    steps {
+        echo 'Analyzing code quality using SonarQube'
+    }
+}
+
     }
 }
